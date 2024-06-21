@@ -8,13 +8,19 @@ export default function MainWindow(props) {
   const date = new Date();
 
   const [loading, setLoading] = useState(true);
-  const [time, setTime] = useState(2)
+
   let [searchParams, setSearchParams] = useSearchParams();
   const [courses, setCourses] = useState([]);
   let { genre_slug } = useParams();
   // const myRef = useRef();
   var apiLink;
   var heading;
+  // const params = [];
+  // for (const entry of searchParams.entries()) {
+  //   params.unshift(entry);
+  // }
+
+
 
   const state = useLocation();
 
@@ -30,9 +36,10 @@ export default function MainWindow(props) {
     apiLink =
       "https://api.rawg.io/api/games?key=5fcdb676e5d74141ac1bb36b70f5d949";
     heading = "All Games";
-  } else if (props.pageID === "search") {
-    apiLink = "http://127.0.0.1:8000/api/courses?q=" + searchParams.get("q");
-    heading = "Search Results for '" + searchParams.get("q") + "'";
+  } else if (props.pageID === "courses") {
+    var stri = (searchParams.get("q")) ? searchParams.get("q") : searchParams.get("language")
+    apiLink = "http://127.0.0.1:8000/api/courses?q=" + searchParams.get("q") + "&language=" + searchParams.get("language") + "&subject=" + searchParams.get("subject");
+    heading = "Search Results for '" + stri + "'";
   } else if (props.pageID === "genre-games") {
     apiLink =
       "https://api.rawg.io/api/games?genres=" + genre_slug + "&key=5fcdb676e5d74141ac1bb36b70f5d949";
@@ -69,7 +76,7 @@ export default function MainWindow(props) {
 
   }, [state]);
 
-  document.body.style.backgroundImage = "radial-gradient(circle, black, #020c1b , black)";
+
 
   if (loading) {
     return (
@@ -102,7 +109,7 @@ export default function MainWindow(props) {
               className="zoom"
             >
               <Link
-                to={"/games/" + data.slug}
+                to={"/courses/" + data.course_id}
                 style={{ textDecoration: "none" }}
               >
 
@@ -110,17 +117,17 @@ export default function MainWindow(props) {
 
                   <img alt="" id="gameCardImage" src={data.course_image_url} />
 
-                  <div style={{ marginLeft: "10px", lineHeight: "92%", marginBottom: "15px", marginRight: "10px" }}>
+                  <div style={{ marginLeft: "10px", lineHeight: "96%", marginBottom: "15px", marginRight: "10px" }}>
 
                     <h5 id="gameCardTitle" className="card-title">
                       {data.course_display_name}
                     </h5>
-
-                    <span style={{ textDecoration: "", fontSize: "13px", color: "white" }}>Skills you'll gain:</span>
+                    <br></br>
+                    <span style={{ textDecoration: "none", fontSize: "13px", color: "white" }}>Skills you'll gain:</span>
                     <span style={{ textDecoration: "none", fontSize: "13px", color: "wheat", fontWeight: "200" }}> {data.course_skills}</span>
-                    <br /><br/>
-                    <span style={{ color: "wheat", fontSize:"15px"}}>{data.course_description}</span>
-                    <br/><br/><br/>
+                    <br /><br />
+                    <span style={{ color: "wheat", fontSize: "15px" }}>{data.course_description.substr(0,120)}...</span>
+                    <br /><br /><br />
                     <div style={{ position: "absolute", bottom: "15px" }}>
                       <span style={{ textDecoration: "none", fontSize: "14px", color: "white" }}>{data.course_level} • {data.course_duration}</span>
                     </div>

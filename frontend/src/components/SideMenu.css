@@ -29,6 +29,7 @@ ul{
     margin-left: 5px;
     font-size: 18px;
     transition: 0.3s;
+    cursor: pointer;
     font-weight: 100;
 }
 

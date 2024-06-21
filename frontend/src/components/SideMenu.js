@@ -3,10 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SideMenu.css";
 
 export default function SideMenu() {
+
+
+
   let navigate = useNavigate();
-  function handleSubmit2(e) {
-    navigate("/genres/" + e, { state: e, replace: true });
-  };
+
+  function handleClick(key, value) {
+    const url = new URL(window.location.href);
+    url.searchParams.set(key, value);
+    navigate("/courses" + url.search);
+  }
+
 
   var genreArray = [
     "Action",
@@ -50,21 +57,21 @@ export default function SideMenu() {
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li id="sideBarLI">
                 <input type="checkbox" />
-                <a id="sideBarA" href="/" className="">
+                <span id="sideBarA" onClick={() => handleClick("subject", "Data Science")} className="">
                   Data Science
-                </a>
+                </span>
               </li>
               <li id="sideBarLI">
                 <input type="checkbox" />
-                <a id="sideBarA" href="/" className="">
+                <span id="sideBarA" onClick={() => handleClick("subject", "Computer Science")} className="">
                   Computer Science
-                </a>
+                </span>
               </li>
               <li id="sideBarLI">
-              <input type="checkbox"/>
-                <a id="sideBarA" href="/" className="">
+                <input type="checkbox" />
+                <span id="sideBarA" onClick={() => handleClick("subject", "Business")} className="">
                   Business
-                </a>
+                </span>
               </li>
               {/* <li><a href="/" className="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li> */}
             </ul>
@@ -83,22 +90,22 @@ export default function SideMenu() {
           <div className="collapse show" id="orders-collapse">
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li id="sideBarLI">
-              <input type="checkbox"/>
-                <Link id="sideBarA" to="/search?language=english" className="">
+                <input type="checkbox" />
+                <span id="sideBarA" onClick={() => handleClick("language", "English")} className="">
                   English
-                </Link>
+                </span>
               </li>
               <li id="sideBarLI">
-              <input type="checkbox"/>
-                <a id="sideBarA" href="/" className="">
+                <input type="checkbox" />
+                <span id="sideBarA" onClick={() => handleClick("language", "French")} className="">
                   French
-                </a>
+                </span>
               </li>
               <li id="sideBarLI">
-              <input type="checkbox"/>
-                <Link id="sideBarA" to="/discover/top-250" className="">
+                <input type="checkbox" />
+                <span id="sideBarA" onClick={() => handleClick("language", "Spanish")} className="">
                   Spanish
-                </Link>
+                </span>
               </li>
               {/* <li><a id="sideBarA" href="/" className="">Returned</a></li> */}
             </ul>

@@ -42,7 +42,7 @@ export default function Login(props) {
     props.setProgress(20);
     const { data } = await axios.post(
       // "https://hbansal28.pythonanywhere.com/api/v1/token/obtain",
-      "http://127.0.0.1:8000/api/v1/token/obtain",
+      "http://127.0.0.1:8000/api/token/obtain",
       { email: emailInput, password: passwordInput }
     );
 
@@ -68,8 +68,8 @@ export default function Login(props) {
     }, 500);
     observer.observe(myRef.current);
   }, []);
-  document.body.style.backgroundImage =
-    "linear-gradient(to bottom, #151515, rgba(117, 19, 93, 0.73))";
+  // document.body.style.backgroundImage =
+  //   "linear-gradient(to bottom, #151515, rgba(117, 19, 93, 0.73))";
   return (
     <div id="loginWindowMainFrame">
       <center>

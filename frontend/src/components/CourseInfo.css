@@ -1,4 +1,4 @@
-#mainGameInfoFrame{
+#mainCourseInfoFrame{
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     padding-top: 1rem;
@@ -32,24 +32,36 @@
     opacity: 1.0;
 }
 
-#gameHeadingFrame{
+#courseHeadingFrame{
     /* background-color: red; */
     width: 64%;
     
     /* float: left; */
 }
 
-#gameHeading{
+#courseHeading{
     font-size: 5rem;
     color: white;
     font-weight: 700;
 }
 
-#gameAboutHeading{
+#courseAboutHeading{
     color: white;
     font-weight: 600;
 }
-#gameAbout {
+#courseAbout {
+    color:white;
+}
+
+#courseAbout ul {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-column-gap: 30px;
+    grid-row-gap: 20px;
+}
+
+#courseAbout ul li{
+    list-style:square;
     color:white;
 }
 
@@ -63,7 +75,7 @@
     min-height: 100%;
   }
 
-#gameInfoRightDIV{
+#courseInfoRightDIV{
     /* background-color: yellow; */
     height: 100%;
     flex-grow: 1;
@@ -74,7 +86,7 @@
     
 }
 
-#gameInfoScreenShotDIV{
+#courseInfoScreenShotDIV{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,10 +101,7 @@
     --bs-breadcrumb-divider: '';
 }
 
-#gameScreenshotImage{
-    width: 192px;
-    height: 108px;
-}
+
 
 .show {
     opacity: 1;
@@ -114,7 +123,7 @@
         background-repeat: repeat;
         background-size: cover;
     }
-    #mainGameInfoFrame{
+    #mainCourseInfoFrame{
          padding-top: 10px;
          padding-left: 18px;
          padding-right: 18px;
@@ -126,17 +135,17 @@
          margin-top: 4.5rem;
     }
 
-    #gameHeading{
+    #courseHeading{
         font-size: 2rem;
         color: white;
         font-weight: 700;
         margin-top: 0;
     }
 
-    #gameHeadingFrame{
+    #courseHeadingFrame{
         width: 100%;
     }
-    #gameInfoRightDIV{
+    #courseInfoRightDIV{
         width: 100%;
         height: auto;
         padding-left: 0px;
@@ -149,15 +158,15 @@
         margin-top: 5px;
     }
 
-    #gameAbout {
+    #courseAbout {
         font-size: 12px;
     }
 
-    #gameInfoScreenShotDIV{
+    #courseInfoScreenShotDIV{
         display: inline-block;
     }
 
-    #gameScreenshotImage{
+    #courseScreenshotImage{
         width: 140px;
         height: 70px;
     }

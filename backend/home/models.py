@@ -1,6 +1,18 @@
 from django.db import models
 
+from authentication.models import User
+
 ################################################################################################
+
+class Subject(models.Model):
+    name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'subjects'
+
+    def __str__(self):
+        return '{}'.format(self.name)
 
 class Skill(models.Model):
     name = models.CharField(max_length=100)
@@ -75,11 +87,15 @@ class Course(models.Model):
     image_url = models.TextField(blank=True, null=True)
 
     description = models.TextField(blank=True, null=True)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, blank=True, null=True)
     skills = models.ManyToManyField(Skill)
     languages = models.ManyToManyField(Language)
     level = models.ForeignKey(Level, on_delete=models.CASCADE, blank=True, null=True)
     duration = models.ForeignKey(Duration, on_delete=models.CASCADE, blank=True, null=True)
     instructors = models.ManyToManyField(Instructor)
+
+    about = models.TextField(blank=True, null=True)
+    outcomes = models.TextField(blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -94,3 +110,17 @@ class Course(models.Model):
 
     def get_price(self):
         return (self.courseprice_set.all().last().price)
+    
+
+################################################################################################
+
+class Enrollment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'enrollments'
+
+    def __str__(self):
+        return '{} : {}'.format(self.user.full_name, self.course.name)

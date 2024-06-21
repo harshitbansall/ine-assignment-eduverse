@@ -30,7 +30,7 @@ const LoginOrProfileButton = () => {
       const loadData = async function () {
         const { data } = await axios.get(
           // "https://hbansal28.pythonanywhere.com/api/v1/config",
-          "http://127.0.0.1:8000/api/v1/config",
+          "http://127.0.0.1:8000/api/config",
           { headers: { Authorization: "JWT " + cookies.get("access_token") } }
         );
         setLoading(false);
@@ -159,7 +159,7 @@ export default function Navbar(props) {
     else{
       e.preventDefault();
       e.stopPropagation();
-      navigate("/search?q=" + searchTerm, { state: value });
+      navigate("/courses?q=" + searchTerm, { state: value });
     }
     
 
