@@ -1,0 +1,61 @@
+#signUpWindowMainFrame{
+    padding-left: 2.5rem;
+    flex-grow: 1;
+    padding-right: 2.5rem;
+    padding-top: 5rem;
+    margin-right: 4rem;
+    margin-left: -4rem;
+    padding-bottom: 2.5rem;
+    background-color: transparent;
+    /* background: rgba(0, 0, 0, 0.75); */
+    /* border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50); */
+    width: 60%;
+    min-height: 84vh;
+}
+
+#signUpBox{
+    background-color: transparent;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 33%;
+    height: 27rem;
+    padding-top: 1rem;
+    background-color: transparent;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 20px 20px 0 rgba(0, 0, 0, 0.50);
+}
+
+#labelSignUp{
+    color:white;
+}
+
+#loginButtonSignupPage{
+    background-color: transparent;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+}
+
+@media (max-width: 1045px) {
+    #signUpWindowMainFrame{
+        padding-top: 10px;
+         padding-left: 10px;
+         padding-right: 10px;
+         margin-left: 1rem;
+         margin-right: 1rem;
+         padding-bottom: 1rem;
+         margin-top: 4.5rem;
+
+
+    }
+
+    #signUpBox{
+        margin-top: 3rem;
+        padding-left: 0rem;
+        padding-right: 0rem;
+        width: 100%;
+        height: 31rem;
+    
+    }
+}

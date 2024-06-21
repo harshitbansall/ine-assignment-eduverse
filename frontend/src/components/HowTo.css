@@ -1,0 +1,15 @@
+#howToMainFrame{
+    padding-left: 2.5rem;
+    flex-grow: 1;
+    padding-right: 2.5rem;
+    padding-top: 1rem;
+    margin-right: 4rem;
+    margin-left: -4rem;
+    padding-bottom: 2.5rem;
+    background-color: transparent;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
+    width: 60%;
+    min-height: 84vh;
+}

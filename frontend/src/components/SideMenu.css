@@ -1,0 +1,49 @@
+#mainSideBar {
+    width: 20%;
+    display: inline-block;
+    /* background-color: red; */
+    
+}
+
+#sideBarLI{
+    margin-left:20px;
+}
+
+ul{
+    color: white;
+    list-style-type: none;
+}
+
+#sideBarUL {
+    color: white;
+    font-size: 23px;
+    /* font-family: "Panton Caps"; */
+    font-weight: 700;
+}
+
+#sideBarA {
+    color: white;
+    list-style-type: none;
+    text-decoration: none;
+    opacity: 0.8;
+    margin-left: 5px;
+    font-size: 18px;
+    transition: 0.3s;
+    font-weight: 100;
+}
+
+#sideBarA:hover{
+    opacity: 1;
+}
+
+
+@media (max-width: 400px) {
+    #mainSideBar{
+        display: none;
+    }
+}
+
+
+.themeOnhover:hover{
+    color: #4fa94d;
+}

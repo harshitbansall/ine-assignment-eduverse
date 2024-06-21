@@ -1,0 +1,164 @@
+#mainGameInfoFrame{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 1rem;
+    margin-right: 4rem;
+    /* margin-left: 2rem; */
+    padding-bottom: 2.5rem;
+    background-color: transparent;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 20px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
+    display: flex;
+    min-height: 84vh;
+    
+}
+
+#breadCrumbMain{
+    --bs-breadcrumb-divider: '>';
+    /* --bs-breadcrumb-divider-color:"white"; */
+}
+
+#breadCrumbLink{
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+
+#breadCrumbLink:hover{
+    opacity: 1.0;
+}
+
+#gameHeadingFrame{
+    /* background-color: red; */
+    width: 64%;
+    
+    /* float: left; */
+}
+
+#gameHeading{
+    font-size: 5rem;
+    color: white;
+    font-weight: 700;
+}
+
+#gameAboutHeading{
+    color: white;
+    font-weight: 600;
+}
+#gameAbout {
+    color:white;
+}
+
+.center-screen {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+#gameInfoRightDIV{
+    /* background-color: yellow; */
+    height: 100%;
+    flex-grow: 1;
+    width: 10%;
+    padding-top: 1.5rem;
+    padding-left: 1.2rem;
+    /* padding-right: 1.2rem; */
+    
+}
+
+#gameInfoScreenShotDIV{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: red; */
+    /* margin-left: 1rem;
+    margin-right: 1rem; */
+}
+
+#platformBreadcrumb{
+    /* margin-left: 1.2rem; */
+    --bs-breadcrumb-divider: '';
+}
+
+#gameScreenshotImage{
+    width: 192px;
+    height: 108px;
+}
+
+.show {
+    opacity: 1;
+    transition: all 1s;
+    filter: blur(0px);
+    transform: translateX(0%);
+    
+}
+
+.hidden {
+    opacity: 0;
+    transition: all 10ms;
+    filter: blur(2px);
+}
+
+
+@media (max-width: 1045px) {
+    body{
+        background-repeat: repeat;
+        background-size: cover;
+    }
+    #mainGameInfoFrame{
+         padding-top: 10px;
+         padding-left: 18px;
+         padding-right: 18px;
+         margin-left: 0.5rem;
+         margin-right: 0.5rem;
+         min-width: 42vh;
+         padding-bottom: 1rem;
+         display: inline;
+         margin-top: 4.5rem;
+    }
+
+    #gameHeading{
+        font-size: 2rem;
+        color: white;
+        font-weight: 700;
+        margin-top: 0;
+    }
+
+    #gameHeadingFrame{
+        width: 100%;
+    }
+    #gameInfoRightDIV{
+        width: 100%;
+        height: auto;
+        padding-left: 0px;
+        margin-left: 0;
+    }
+
+    #breadCrumbMain{
+        margin-left: 5px;
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    #gameAbout {
+        font-size: 12px;
+    }
+
+    #gameInfoScreenShotDIV{
+        display: inline-block;
+    }
+
+    #gameScreenshotImage{
+        width: 140px;
+        height: 70px;
+    }
+}

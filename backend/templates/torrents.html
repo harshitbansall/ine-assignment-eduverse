@@ -1,0 +1,31 @@
+<div style="margin:0 1rem 0rem 1rem;">
+    <h3 style="text-align:center;color:white;padding:1rem;">'{{ name }}' Torrents</h3>
+    <table style="width:100%;border:1px solid white;">
+        <tr>
+            <th style="text-align:center;border:1px solid white;color:white;">SNO</th>
+            <th style="text-align:center;border:1px solid white;color:white;">Name</th>
+            {% comment %} <th style="text-align:center;border:1px solid white;color:white;">Stream</th> {% endcomment %}
+            <th style="text-align:center;border:1px solid white;color:white;">Size</th>
+            <th style="text-align:center;border:1px solid white;color:white;">Seeds</th>
+            <th style="text-align:center;border:1px solid white;color:white;">Leeches</th>
+        </tr>
+        {% for item in torrentData %}
+            <tr>
+                <td style="text-align:center;border:1px solid white;color:white;">{{ forloop.counter }}</td>
+                <td style="text-align:center;border:1px solid white;color:white;">
+                    <a class="hoverElement"
+                       style="text-decoration:none;
+                              color:white;"
+                       href="magnet:?xt=urn:btih:{{ item.info_hash }}&dn={{ item.name }}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969">
+                    {{ item.name }}</a>
+                </td>
+                {% comment %} <td style="text-align:center;border:1px solid white;color:white;">
+                    <a class="hoverElement" style="cursor:pointer; text-decoration:none;" onclick="return openStreamWithMagnet('{{ name }}','{{ backdrop }}', 'magnet:?xt=urn:btih:{{ item.info_hash }}&dn={{ item.name }}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969')">Play</a>
+                </td> {% endcomment %}
+                <td style="text-align:center;border:1px solid white;color:white;">{{ item.size|filesizeformat }}</td>
+                <td style="text-align:center;border:1px solid white;color:white;">{{ item.seeders }}</td>
+                <td style="text-align:center;border:1px solid white;color:white;">{{ item.leechers }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
