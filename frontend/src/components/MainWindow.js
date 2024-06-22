@@ -28,22 +28,10 @@ export default function MainWindow(props) {
     apiLink =
       "http://127.0.0.1:8000/api/courses";
     heading = "Featured";
-  } else if (props.pageID === "top-250") {
-    apiLink =
-      "https://api.rawg.io/api/games?ordering=-metacritic&key=5fcdb676e5d74141ac1bb36b70f5d949";
-    heading = "Top 250";
-  } else if (props.pageID === "all-games") {
-    apiLink =
-      "https://api.rawg.io/api/games?key=5fcdb676e5d74141ac1bb36b70f5d949";
-    heading = "All Games";
   } else if (props.pageID === "courses") {
     var stri = (searchParams.get("q")) ? searchParams.get("q") : searchParams.get("language")
     apiLink = "http://127.0.0.1:8000/api/courses?q=" + searchParams.get("q") + "&language=" + searchParams.get("language") + "&subject=" + searchParams.get("subject");
     heading = "Search Results for '" + stri + "'";
-  } else if (props.pageID === "genre-games") {
-    apiLink =
-      "https://api.rawg.io/api/games?genres=" + genre_slug + "&key=5fcdb676e5d74141ac1bb36b70f5d949";
-    heading = genre_slug.charAt(0).toUpperCase() + genre_slug.slice(1) + " Games";
   }
 
 
@@ -104,7 +92,7 @@ export default function MainWindow(props) {
           {courses.map((data) => (
 
             <div
-              id="gameCard"
+              id="courseCard"
               key={data.course_id}
               className="zoom"
             >
@@ -115,11 +103,11 @@ export default function MainWindow(props) {
 
                 <div>
 
-                  <img alt="" id="gameCardImage" src={data.course_image_url} />
+                  <img alt="" id="courseCardImage" src={data.course_image_url} />
 
                   <div style={{ marginLeft: "10px", lineHeight: "96%", marginBottom: "15px", marginRight: "10px" }}>
 
-                    <h5 id="gameCardTitle" className="card-title">
+                    <h5 id="courseCardTitle" className="card-title">
                       {data.course_display_name}
                     </h5>
                     <br></br>

@@ -8,8 +8,8 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import LoadingBar from 'react-top-loading-bar'
 import React, { useState } from "react";
-import HowTo from "./components/HowTo";
 import SignUp from "./components/SignUp";
+import LessonPage from "./components/LessonPage";
 
 
 function App() {
@@ -25,18 +25,14 @@ function App() {
         />
 
         <div id="mainFrame">
-          <SideMenu />
+          {/* <SideMenu /> */}
           <Routes>
-            <Route path="/" element={<MainWindow setProgress={setProgress} pageID="featured" key="featured" />} />
-            <Route path="/howto" element={<HowTo setProgress={setProgress} key="how-to" />} />
-            <Route path="/discover/top-250" element={<MainWindow setProgress={setProgress} pageID="top-250" key="top-250" />} />
-            <Route path="/games" element={<MainWindow setProgress={setProgress} pageID="all-games" key="all-games" />} />
-            <Route path="/courses" element={<MainWindow setProgress={setProgress} pageID="courses" key={0} />} />
+            <Route path="/" element={<><SideMenu /><MainWindow setProgress={setProgress} pageID="featured" key="featured" /></>} />
+            <Route path="/courses" element={<><SideMenu /><MainWindow setProgress={setProgress} pageID="courses" key={0} /></>} />
             <Route path="/login" element={<Login setProgress={setProgress} key="login" />} />
             <Route path="/signup" element={<SignUp setProgress={setProgress} key="signup" />} />
-            <Route path="/courses/:course_id" element={<CourseInfo setProgress={setProgress} key="gameInfo" />} />
-
-            {/* <Route path="/genres/:genre_slug" element={<MainWindow setProgress={setProgress} pageID="genre-games" key="genre-games" />} /> */}
+            <Route path="/courses/:course_id" element={<CourseInfo setProgress={setProgress} key="courseInfo" />} />
+            <Route path="/courses/:course_id/lessons/:lesson_id" element={<LessonPage setProgress={setProgress} key="lessonPage" />} />
           </Routes>
         </div>
       </BrowserRouter>

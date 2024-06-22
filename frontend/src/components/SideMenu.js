@@ -136,33 +136,6 @@ export default function SideMenu() {
                   </Link>
                 </li>
               ))}
-
-              {/* <li>
-                <Link id="sideBarA" to="/games/strategy" className="">
-                  Strategy
-                </Link>
-              </li>
-              <li>
-                <Link id="sideBarA" to="/discover/top-250" className="">
-                  Shooter
-                </Link>
-              </li>
-              <li>
-                <a id="sideBarA" href="/" className="">
-                  Adventure
-                </a>
-              </li>
-              <li>
-                <a id="sideBarA" href="/" className="">
-                  Racing
-                </a>
-              </li>
-              <li>
-                <a id="sideBarA" href="/" className="">
-                  Sports
-                </a>
-              </li> */}
-              {/* <li><a id="sideBarA" href="/" className="">Returned</a></li> */}
             </ul>
           </div>
         </li>

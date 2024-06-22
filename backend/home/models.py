@@ -111,6 +111,25 @@ class Course(models.Model):
     def get_price(self):
         return (self.courseprice_set.all().last().price)
     
+    def get_lessons(self):
+        return (self.lesson_set.all().order_by('lesson_number'))
+    
+class Lesson(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    lesson_number = models.IntegerField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'lessons'
+
+    def __str__(self):
+        return 'Course {} Lesson {}: {}'.format(self.course.id, self.lesson_number, self.name)
+
+    # def get_topics(self):
+    #     return (self.topic_set.all().order_by('topic_number'))
+    
 
 ################################################################################################
 

@@ -29,7 +29,6 @@ const LoginOrProfileButton = () => {
       setLoading(true);
       const loadData = async function () {
         const { data } = await axios.get(
-          // "https://hbansal28.pythonanywhere.com/api/v1/config",
           "http://127.0.0.1:8000/api/config",
           { headers: { Authorization: "JWT " + cookies.get("access_token") } }
         );
@@ -212,7 +211,7 @@ export default function Navbar(props) {
               id="searchInputBox"
               name="q"
               type="search"
-              placeholder="Search Games"
+              placeholder="Search Courses"
               value={searchTerm}
               onChange={handleChange}
             />

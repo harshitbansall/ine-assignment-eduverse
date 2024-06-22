@@ -3,10 +3,11 @@
     flex-grow: 1;
     padding-right: 2.5rem;
     padding-top: 1.2rem;
-    margin-right: 4rem;
+    margin-right: 2rem;
     margin-left: -4rem;
     padding-bottom: 2.5rem;
     background-color: transparent;
+    /* background: red; */
     background: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
@@ -32,7 +33,7 @@
     grid-row-gap: 16px;
 }
 
-#gameCard {
+#courseCard {
     background: transparent;
     border: thin solid rgba(255, 255, 255, 0.5);
     transition: 0.3s;
@@ -44,18 +45,18 @@
 
 }
 
-#gameCard:hover {
+#courseCard:hover {
     background: transparent;
     box-shadow: 0px 0px 0px 0px rgb(255, 255, 255), 0 0px 20px 0.5px rgb(255, 255, 255, 0.2);
 }
 
-#gameCardImage {
+#courseCardImage {
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
     object-fit: cover;
 }
 
-#gameCardTitle {
+#courseCardTitle {
     color: white;
     margin-top: 10px;
     margin-bottom: 3px;
@@ -86,7 +87,7 @@
     filter: blur(2px);
 }
 
-#gameCardImage {
+#courseCardImage {
     height: 150px;
     width: 280px;
 }
@@ -107,7 +108,7 @@
         grid-template-columns: auto;
     }
 
-    #gameCardTitle {
+    #courseCardTitle {
         font-size: 15px;
     }
 
@@ -121,7 +122,7 @@
 
 
 @media (max-width: 415px) {
-    #gameCardImage {
+    #courseCardImage {
         height: 80%;
         width: 108%;
     }
@@ -129,7 +130,7 @@
 
 
 @media (min-width:416px) and (max-width: 760px) {
-    #gameCardImage {
+    #courseCardImage {
         height: 80%;
         width: 104%;
     }

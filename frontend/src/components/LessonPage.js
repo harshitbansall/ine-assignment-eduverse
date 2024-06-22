@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import "./CourseInfo.css";
+import "./LessonPage.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
@@ -8,9 +8,9 @@ import { TailSpin } from "react-loader-spinner";
 import Cookies from "universal-cookie";
 
 
-export default function CourseInfo(props) {
+export default function LessonPage(props) {
   const [loading, setLoading] = useState(true);
-  const [courseInfo, setCourseInfo] = useState([]);
+  const [courseInfo, setLessonPage] = useState([]);
   let { course_id } = useParams();
   const cookies = new Cookies();
 
@@ -52,7 +52,7 @@ export default function CourseInfo(props) {
 
     const loadData = async function () {
       const { data } = await axios.get("http://127.0.0.1:8000/api/courses/" + course_id + "/content");
-      setCourseInfo(data.results);
+      setLessonPage(data.results);
       // console.log(data);
       setLoading((loading) => !loading);
       props.setProgress(100);
@@ -71,7 +71,7 @@ export default function CourseInfo(props) {
 
   if (loading) {
     return (
-      <div id="mainCourseInfoFrame" className="container">
+      <div id="mainLessonPageFrame" className="container">
         <div className="center-screen">
           <TailSpin
             height="80"
@@ -88,7 +88,7 @@ export default function CourseInfo(props) {
     );
   } else {
     return (
-      <div id="mainCourseInfoFrame" className="container">
+      <div id="mainLessonPageFrame" className="container">
         <div id="courseHeadingFrame">
           <nav id="breadCrumbMain" aria-label="breadcrumb">
             <ol className="breadcrumb">
@@ -146,7 +146,7 @@ export default function CourseInfo(props) {
               <ol class="list-group list-group-numbered" style={{ width: "95%" }}>
                 {courseInfo.course_lessons.map((data) => (
                   <li class="list-group-item lessonLink">
-                    <Link to={"/courses/" + courseInfo.course_id + "/lessons/" + data.id} style={{textDecoration:"none", color:"white"}}>{data.name}</Link></li>
+                    <Link style={{textDecoration:"none", color:"white"}}>{data.name}</Link></li>
 
 
                 ))}
