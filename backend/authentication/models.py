@@ -39,7 +39,6 @@ class User(AbstractUser):
     last_name = None
     email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=100, blank=True, null=True)
-    raw_password = models.CharField(max_length=30, blank=True, null=True)
     is_email_verified = models.BooleanField(default=False)
 
     objects = UserManager()

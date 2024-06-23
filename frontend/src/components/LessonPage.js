@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./LessonPage.css";
 import axios from "axios";
@@ -113,7 +113,6 @@ export default function LessonPage(props) {
             </ol>
           </nav>
           <div className="d-flex align-items-start" style={{ width: "100%", marginTop: "30px" }}>
-            {/* <p>{(lesson_number === 1) ? "nav-link active" : "nav-link"}</p> */}
             <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               {lessonData.course_lessons.map((data) => (
 

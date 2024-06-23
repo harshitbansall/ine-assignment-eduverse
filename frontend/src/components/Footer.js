@@ -1,19 +1,7 @@
-import React, { useEffect, useState, useRef} from "react";
+import React, { useEffect} from "react";
 import './Footer.css';
 export default function Footer() {
-  const myRef = useRef();
   useEffect(() =>{
-    // const observer = new IntersectionObserver(([entry]) =>{
-    //   if (entry.isIntersecting){
-    //     entry.target.classList.remove('hidden');
-    //     entry.target.classList.add('show');
-    //   }
-    //   else{
-    //     entry.target.classList.remove('show');
-    //     entry.target.classList.add('hidden');
-    //   }
-    // });
-    // observer.observe(myRef.current);
   },[]);
   return (
     <div id="mainFooter" className="footer py-3" >

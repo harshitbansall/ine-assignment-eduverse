@@ -39,17 +39,11 @@ class UserCreate(APIView):
     authentication_classes = ()
 
     def post(self, request):
-        # new_user = User(full_name = request.data.get("full_name"), email = request.data.get("email"), raw_password = request.data.get("password"))
-        # new_user.set_password(request.data.get("password"))
-        # new_user.save()
-        # return Response(data={"success":"true","message":"User Created."})
-
         data = {}
         requestRawData = request.data
         data['full_name'] = requestRawData.get('full_name').title()
         data['email'] = requestRawData.get('email').lower()
         data['password'] = requestRawData.get('password')
-        data['raw_password'] = requestRawData.get('password')
         serializer = UserSerializer(data = data)
         if serializer.is_valid(raise_exception=True):
             try:

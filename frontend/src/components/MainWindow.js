@@ -1,14 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link, useSearchParams, useParams, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./MainWindow.css";
 import { TailSpin } from "react-loader-spinner";
-import Cookies from "universal-cookie";
 
 export default function MainWindow(props) {
-  const cookies = new Cookies();
-
-
   const [loading, setLoading] = useState(true);
 
   let [searchParams, setSearchParams] = useSearchParams();

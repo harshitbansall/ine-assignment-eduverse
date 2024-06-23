@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./SignUp.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp(props) {
   let navigate = useNavigate();
@@ -26,14 +26,14 @@ export default function SignUp(props) {
       "passwordInputBoxSignupPage"
     ).value;
 
-    if (firstNameInput == "") {
+    if (firstNameInput === "") {
       document.getElementById("alertBox").style.opacity = "1";
       document.getElementById("alertBox").innerHTML =
         "Please provide First Name.";
       return;
     }
 
-    if (emailInput == "") {
+    if (emailInput === "") {
       document.getElementById("alertBox").style.opacity = "1";
       document.getElementById("alertBox").innerHTML = "Please provide E-mail.";
       return;
@@ -44,7 +44,7 @@ export default function SignUp(props) {
         "Please provide valid E-mail.";
       return;
     }
-    if (passwordInput == "") {
+    if (passwordInput === "") {
       document.getElementById("alertBox").style.opacity = "1";
       document.getElementById("alertBox").innerHTML =
         "Please provide Password.";
@@ -53,8 +53,7 @@ export default function SignUp(props) {
 
     props.setProgress(20);
     const { data } = await axios.post(
-      // "https://hbansal28.pythonanywhere.com/api/v1/token/obtain",
-      "https://eduversebackend.pythonanywhere.com/api/signup",
+      "https://eduversebackend.pythonanywhere.com/api/auth/register",
       {
         full_name: firstNameInput + " " + lastNameInput,
         email: emailInput,

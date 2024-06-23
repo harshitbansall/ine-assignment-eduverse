@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./CourseInfo.css";
 import axios from "axios";
@@ -116,15 +116,15 @@ export default function CourseInfo(props) {
           {
             (courseInfo.is_enrolled) ?
               <>
-                <button id="enrollButton" type="button" class="btn btn-success" style={{ fontSize: "20px" }} disabled>Already Enrolled</button>
-                <Link to={"/courses/" + courseInfo.course_id + "/lessons/1"}><button id="gotoLessonsButton" type="button" class="btn btn-primary" style={{ fontSize: "20px", marginLeft: "10px" }}>Go to Lessons</button></Link>
+                <button id="enrollButton" type="button" className="btn btn-success" style={{ fontSize: "20px" }} disabled>Already Enrolled</button>
+                <Link to={"/courses/" + courseInfo.course_id + "/lessons/1"}><button id="gotoLessonsButton" type="button" className="btn btn-primary" style={{ fontSize: "20px", marginLeft: "10px" }}>Go to Lessons</button></Link>
               </>
               :
               <>
-                <button id="enrollButton" type="button" class="btn btn-primary" style={{ fontSize: "20px" }} onClick={() => handleEnrollButton(courseInfo.course_id)}>
+                <button id="enrollButton" type="button" className="btn btn-primary" style={{ fontSize: "20px" }} onClick={() => handleEnrollButton(courseInfo.course_id)}>
                   <img width="25" height="25" style={{ marginRight: "10px", marginTop: "-5px" }} src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-signature-online-shopping-vitaliy-gorbachev-lineal-vitaly-gorbachev.png" alt="external-signature-online-shopping-vitaliy-gorbachev-lineal-vitaly-gorbachev" />
                   Enroll for Free</button>
-                <Link to={"/courses/" + courseInfo.course_id + "/lessons/1"}><button id="gotoLessonsButton" type="button" class="btn btn-primary hidden" style={{ fontSize: "20px", marginLeft: "10px" }}>Go to Lessons</button></Link>
+                <Link to={"/courses/" + courseInfo.course_id + "/lessons/1"}><button id="gotoLessonsButton" type="button" className="btn btn-primary hidden" style={{ fontSize: "20px", marginLeft: "10px" }}>Go to Lessons</button></Link>
               </>
           }
 
@@ -132,35 +132,35 @@ export default function CourseInfo(props) {
             id="courseAbout"
             dangerouslySetInnerHTML={{ __html: courseInfo.course_description }}
           ></div>
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style={{ marginTop: "20px" }}>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">About</button>
+          <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist" style={{ marginTop: "20px" }}>
+            <li className="nav-item" role="presentation">
+              <button className="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">About</button>
             </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Outcomes</button>
+            <li className="nav-item" role="presentation">
+              <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Outcomes</button>
             </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-syllabus-tab" data-bs-toggle="pill" data-bs-target="#pills-syllabus" type="button" role="tab" aria-controls="pills-syllabus" aria-selected="false">Syllabus</button>
+            <li className="nav-item" role="presentation">
+              <button className="nav-link" id="pills-syllabus-tab" data-bs-toggle="pill" data-bs-target="#pills-syllabus" type="button" role="tab" aria-controls="pills-syllabus" aria-selected="false">Syllabus</button>
             </li>
 
           </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+          <div className="tab-content" id="pills-tabContent">
+            <div className="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
               <div
                 id="courseAbout"
                 dangerouslySetInnerHTML={{ __html: courseInfo.course_about }}
               ></div>
             </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+            <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
               <div
                 id="courseAbout"
                 dangerouslySetInnerHTML={{ __html: courseInfo.course_outcomes }}
               ></div>
             </div>
-            <div class="tab-pane fade" id="pills-syllabus" role="tabpanel" aria-labelledby="pills-syllabus-tab" tabindex="0">
-              <ol class="list-group list-group-numbered" style={{ width: "95%" }}>
+            <div className="tab-pane fade" id="pills-syllabus" role="tabpanel" aria-labelledby="pills-syllabus-tab" tabindex="0">
+              <ol className="list-group list-group-numbered" style={{ width: "95%" }}>
                 {courseInfo.course_lessons.map((data) => (
-                  <li class="list-group-item lessonLink">
+                  <li className="list-group-item lessonLink">
                     <Link to={"/courses/" + courseInfo.course_id + "/lessons/" + data.lesson_number} style={{ textDecoration: "none", color: "white" }}>{data.name}</Link></li>
 
 
@@ -174,7 +174,7 @@ export default function CourseInfo(props) {
 
         <div id="courseInfoRightDIV">
 
-          <img style={{ height: "230px", width: "100%", objectFit: "cover" }} src={courseInfo.course_image_url}></img>
+          <img alt="" style={{ height: "230px", width: "100%", objectFit: "cover" }} src={courseInfo.course_image_url}></img>
 
 
           <p id="courseAbout" style={{ marginTop: "2rem", color: "wheat", fontSize: "12px" }}>Subject</p>

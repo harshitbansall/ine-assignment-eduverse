@@ -10,5 +10,4 @@ urlpatterns = [
     path('courses/<int:course_id>/lessons', LessonPage.as_view(), name='LessonPage'),
     path('courses/<int:course_id>/lessons/<int:lesson_id>', LessonComplete.as_view(), name='LessonComplete'),
 
-
 ]

@@ -3,9 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SideMenu.css";
 
 export default function SideMenu() {
-
-
-
   let navigate = useNavigate();
 
   function handleClick(key, value) {

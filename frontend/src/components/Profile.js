@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLocation } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Profile.css";
@@ -9,7 +9,6 @@ export default function Profile(props) {
   const cookies = new Cookies();
   const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState([]);
-  // const state = useLocation();
 
 
   useEffect(() => {
@@ -91,22 +90,11 @@ export default function Profile(props) {
                       <div style={{ marginBottom: "13px" }}>
                         <span style={{ color: "pink", fontSize: "17px", fontFamily: "Montserrat", marginRight:"3px"}}>{data.course_completed_lessons}/{data.course_total_lessons} </span>Lessons Completed
                       </div>
-
                       <div id="progressDIV" style={{ width: (data.course_completed_lessons/data.course_total_lessons)*100 - 2 + "%", height: "7px", background: "lightblue", marginLeft:"-5px" }}>
                       </div>
                     </div>
-
-
-
-
-
                   </div>
-
-
-
                 </div>
-
-
               </Link>
             </div>
 

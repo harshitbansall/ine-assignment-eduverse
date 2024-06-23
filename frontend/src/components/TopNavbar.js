@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./TopNavbar.css";
@@ -96,11 +96,6 @@ const LoginOrProfileButton = () => {
                 My Profile
               </Link>
             </li>
-            {/* <li>
-              <Link className="dropdown-item" href="/watchlist">
-                My Wishlist
-              </Link>
-            </li> */}
             <li>
               <hr className="dropdown-divider" />
             </li>

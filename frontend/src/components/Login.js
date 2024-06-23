@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Login.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 export default function Login(props) {
   let navigate = useNavigate();
@@ -41,8 +41,7 @@ export default function Login(props) {
 
     props.setProgress(20);
     const { data } = await axios.post(
-      // "https://hbansal28.pythonanywhere.com/api/v1/token/obtain",
-      "https://eduversebackend.pythonanywhere.com/api/token/obtain",
+      "https://eduversebackend.pythonanywhere.com/api/auth/login",
       { email: emailInput, password: passwordInput }
     );
 

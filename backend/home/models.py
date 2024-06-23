@@ -127,9 +127,6 @@ class Lesson(models.Model):
     def __str__(self):
         return 'Course {} Lesson {}: {}'.format(self.course.id, self.lesson_number, self.name)
 
-    # def get_topics(self):
-    #     return (self.topic_set.all().order_by('topic_number'))
-    
 
 ################################################################################################
 
