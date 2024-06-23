@@ -57,13 +57,17 @@ export default function CourseInfo(props) {
     props.setProgress(20);
 
     const loadData = async function () {
-      const { data } = await axios.get("http://127.0.0.1:8000/api/courses/" + course_id + "/content",
-        { headers: { Authorization: "JWT " + cookies.get("access_token") } });
+      var headers;
+      if (cookies.get("access_token")) {
+        headers = { headers: { Authorization: "JWT " + cookies.get("access_token") } };
+      }
+      else {
+        headers = {}
+      }
+      const { data } = await axios.get("http://127.0.0.1:8000/api/courses/" + course_id + "/content", headers);
       setCourseInfo(data.results);
       setLoading((loading) => !loading);
-      // if (data.results.is_enrolled) {
-      //   handleButtonChange("Already Enrolled.");
-      // }
+
       props.setProgress(100);
     };
 

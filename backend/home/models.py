@@ -143,3 +143,14 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return '{} : {}'.format(self.user.full_name, self.course.name)
+
+class LessonProgress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'lesson_progesses'
+
+    def __str__(self):
+        return '{} : {}'.format(self.user.full_name, self.lesson.name)

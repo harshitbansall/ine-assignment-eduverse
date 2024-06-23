@@ -93,14 +93,14 @@ const LoginOrProfileButton = () => {
           >
             <li>
               <Link className="dropdown-item" to="/profile">
-                My Courses
+                My Profile
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link className="dropdown-item" href="/watchlist">
                 My Wishlist
               </Link>
-            </li>
+            </li> */}
             <li>
               <hr className="dropdown-divider" />
             </li>

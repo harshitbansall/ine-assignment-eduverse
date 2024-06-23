@@ -43,6 +43,10 @@ class Enrollment_Admin(admin.ModelAdmin):
     list_display = ('user','course','created_at',)
     readonly_fields = ('id',)
 
+class LessonProgress_Admin(admin.ModelAdmin):
+    list_display = ('user','lesson','created_at',)
+    readonly_fields = ('id',)
+
 admin.site.register(Course, Course_Admin) 
 admin.site.register(Lesson, Lesson_Admin) 
 admin.site.register(Subject, Subject_Admin) 
@@ -53,3 +57,4 @@ admin.site.register(Duration, Duration_Admin)
 admin.site.register(Organization, Organization_Admin) 
 admin.site.register(Instructor, Instructor_Admin) 
 admin.site.register(Enrollment, Enrollment_Admin) 
+admin.site.register(LessonProgress, LessonProgress_Admin) 

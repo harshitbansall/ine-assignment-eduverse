@@ -8,9 +8,9 @@ from rest_framework.views import APIView
 
 import eduverse.settings as settings
 
-from .models import Course, Enrollment
+from .models import Course, Enrollment, Lesson, LessonProgress
 from .serializers import (CourseContentSerializer, CourseListSerializer,
-                          LessonSerializer)
+                          EnrolledCourseListSerializer, LessonSerializer)
 
 
 class Courses(APIView):
@@ -67,15 +67,15 @@ class Enrollments(APIView):
     # authentication_classes = ()
 
     def get(self, request):
-        print(request.user)
         user_enrollments = Enrollment.objects.filter(user = request.user)
         user_courses = [x.course for x in user_enrollments]
+        user_courses.reverse()
 
         return Response(data={
             'success': 'true',
             'results': {
                 'total_courses': len(user_courses),
-                'courses': CourseListSerializer(user_courses, many=True).data,
+                'courses': EnrolledCourseListSerializer(user_courses, many=True, context = {"user_id":request.user.id}).data,
             }, 
         })
     
@@ -99,8 +99,8 @@ class Enrollments(APIView):
 
 
 class LessonPage(APIView):
-    permission_classes = (permissions.AllowAny,)
-    authentication_classes = ()
+    # permission_classes = (permissions.AllowAny,)
+    # authentication_classes = ()
 
     def get(self, request, course_id):
         course = Course.objects.filter(id = course_id).last()
@@ -112,8 +112,24 @@ class LessonPage(APIView):
             'results': {
                 "course_id":course.id,
                 "course_display_name":course.display_name,
-                "course_lessons":LessonSerializer(lessons, many=True).data,
+                "course_lessons":LessonSerializer(lessons, many=True, context = {'user_id': request.user.id}).data,
             }, 
+        })
+    
+class LessonComplete(APIView):
+    def post(self, request, course_id, lesson_id):
+
+        requested_lesson = Lesson.objects.filter(id=lesson_id).last()
+
+        check_lesson_progress = LessonProgress.objects.filter(user = request.user, lesson = requested_lesson)
+        if check_lesson_progress.exists():
+            lesson_progress = check_lesson_progress.last()
+        else:
+            lesson_progress = LessonProgress.objects.create(user = request.user, lesson = requested_lesson)
+
+        return Response(data={
+            'success': 'true',
+            'results': lesson_progress.id, 
         })
 
 

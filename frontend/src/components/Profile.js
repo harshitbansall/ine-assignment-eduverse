@@ -85,16 +85,20 @@ export default function Profile(props) {
                     <br></br>
                     <span style={{ textDecoration: "none", fontSize: "13px", color: "white" }}>Skills you'll gain:</span>
                     <span style={{ textDecoration: "none", fontSize: "13px", color: "wheat", fontWeight: "200" }}> {data.course_skills}</span>
-                    {/* <br /><br />
-                    <span style={{ color: "wheat", fontSize: "15px" }}>{data.course_description.substr(0, 120)}...</span> */}
-                    <br /><br /><br />
-                    <div style={{ position: "absolute", bottom: "15px" }}>
-                      <span style={{ textDecoration: "none", fontSize: "14px", color: "white" }}>{data.course_level} • {data.course_duration}</span>
+
+                    <br /><br /><br /><br />
+                    <div style={{ position: "absolute", bottom: "0px", color: "white", width: "100%" }}>
+                      <div style={{ marginBottom: "13px" }}>
+                        <span style={{ color: "pink", fontSize: "17px", fontFamily: "Montserrat", marginRight:"3px"}}>{data.course_completed_lessons}/{data.course_total_lessons} </span>Lessons Completed
+                      </div>
+
+                      <div id="progressDIV" style={{ width: (data.course_completed_lessons/data.course_total_lessons)*100 - 5 + "%", height: "7px", background: "lightblue", marginLeft:"-5px" }}>
+                      </div>
                     </div>
 
 
 
-                    {/* <p style={{ fontSize: "10px" }}>{data.course_description}</p> */}
+
 
                   </div>
 
@@ -102,7 +106,7 @@ export default function Profile(props) {
 
                 </div>
 
-                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+
               </Link>
             </div>
 

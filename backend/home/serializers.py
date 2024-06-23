@@ -34,9 +34,35 @@ class CourseListSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_course_instructors(self, obj):
         return ", ".join([str(x) for x in obj.instructors.all()])
+    
+    
 
-    # def get_course_progress(self, obj):
-    #     return CourseProgressSerializer(obj.return_is_completed(self.context.get("user_id")), many=True).data
+class EnrolledCourseListSerializer(serializers.HyperlinkedModelSerializer):
+    course_id = serializers.IntegerField(source='id')
+    course_name = serializers.CharField(source='name')
+    course_display_name = serializers.CharField(source='display_name')
+    course_image_url = serializers.CharField(source='image_url')
+
+    course_skills = serializers.SerializerMethodField("get_course_skills")
+
+    course_total_lessons = serializers.SerializerMethodField("get_total_lessons")
+    course_completed_lessons = serializers.SerializerMethodField("get_completed_lessons")
+
+    class Meta:
+        model = Course
+        fields = ('course_id', 'course_name',
+                  'course_display_name', 'course_image_url', 'course_skills', 'course_total_lessons', 'course_completed_lessons')
+
+    def get_course_skills(self, obj):
+        return ", ".join([str(x) for x in obj.skills.all()])
+    
+    def get_total_lessons(self, obj):
+        return len(obj.lesson_set.all())
+    
+    def get_completed_lessons(self, obj):
+        lesson_progess_qs = LessonProgress.objects.filter(lesson__course=obj, user__id = self.context.get("user_id"))
+        return len(lesson_progess_qs)
+
 
 class LessonSnippetSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -96,7 +122,15 @@ class LessonSerializer(serializers.HyperlinkedModelSerializer):
     lesson_id = serializers.IntegerField(source='id')
     lesson_name = serializers.CharField(source='name')
     lesson_description = serializers.CharField(source='description')
+    lesson_is_completed = serializers.SerializerMethodField("get_is_completed")
 
     class Meta:
         model = Lesson
-        fields = ('lesson_id','lesson_name','lesson_number','lesson_description')
+        fields = ('lesson_id','lesson_name','lesson_number','lesson_description', 'lesson_is_completed')
+
+    def get_is_completed(self, obj):
+        lesson_progess = LessonProgress.objects.filter(user__id = self.context.get("user_id"), lesson = obj)
+        if lesson_progess.exists():
+            return True
+        else:
+            return False
