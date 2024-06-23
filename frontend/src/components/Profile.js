@@ -60,7 +60,7 @@ export default function Profile(props) {
 
       <div id="profileMainFrame">
         <h1 id="mainWindowHeading">Enrolled Courses</h1>
-        <div id="mainWindowGrid">
+        <div id="profileMainWindowGrid">
           {courses.map((data) => (
 
             <div
@@ -92,7 +92,7 @@ export default function Profile(props) {
                         <span style={{ color: "pink", fontSize: "17px", fontFamily: "Montserrat", marginRight:"3px"}}>{data.course_completed_lessons}/{data.course_total_lessons} </span>Lessons Completed
                       </div>
 
-                      <div id="progressDIV" style={{ width: (data.course_completed_lessons/data.course_total_lessons)*100 - 5 + "%", height: "7px", background: "lightblue", marginLeft:"-5px" }}>
+                      <div id="progressDIV" style={{ width: (data.course_completed_lessons/data.course_total_lessons)*100 - 2 + "%", height: "7px", background: "lightblue", marginLeft:"-5px" }}>
                       </div>
                     </div>
 

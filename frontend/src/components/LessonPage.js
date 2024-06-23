@@ -117,7 +117,7 @@ export default function LessonPage(props) {
             <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               {lessonData.course_lessons.map((data) => (
 
-                <button style={{ fontSize: "17px" }} className={(data.lesson_number === parseInt(lesson_number)) ? "nav-link active" : "nav-link"} id={"lesson_" + data.lesson_number} data-bs-toggle="pill" data-bs-target={"#v-pills-" + data.lesson_number} type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">{data.lesson_name}</button>
+                <button className={(data.lesson_number === parseInt(lesson_number)) ? "nav-link active" : "nav-link"} id={"lesson_" + data.lesson_number} data-bs-toggle="pill" data-bs-target={"#v-pills-" + data.lesson_number} type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">{data.lesson_name}</button>
               ))}
             </div>
             <div className="tab-content" id="v-pills-tabContent" style={{ width: "100%" }}>
@@ -129,10 +129,10 @@ export default function LessonPage(props) {
                     {
                       (data.lesson_is_completed) ?
 
-                        <button type="button" className="btn btn-success" style={{ fontSize: "20px" }} disabled>
+                        <button type="button" className="btn btn-success completeButton" disabled>
                           Completed</button>
                         :
-                        <button id={"completeButton" + data.lesson_id} type="button" className="btn btn-primary" style={{ fontSize: "20px" }} onClick={() => handleMarkCompletedButton(data.lesson_id)}>
+                        <button id={"completeButton" + data.lesson_id} type="button" className="btn btn-primary completeButton" onClick={() => handleMarkCompletedButton(data.lesson_id)}>
                           <img width="25" height="25" style={{ marginRight: "10px", marginTop: "-5px" }} src="https://img.icons8.com/material-outlined/24/task-completed.png" alt="task-completed" />
                           Mark as Completed</button>
                     }

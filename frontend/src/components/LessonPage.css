@@ -28,6 +28,7 @@
     opacity: 0.8;
 }
 
+
 #breadCrumbLink:hover {
     opacity: 1.0;
 }
@@ -85,12 +86,13 @@
 
 
 #contentBox {
- color: white;
+    color: white;
 }
-#contentBox ul li{
+
+#contentBox ul li {
     list-style: square;
     color: white;
-    
+
 }
 
 .show {
@@ -116,14 +118,36 @@
 
 .lessonLink:hover {
     background-color: rgba(0, 0, 0, 0.5);
-    
+
+}
+.nav-link{
+    font-size: 17px;
 }
 
+.completeButton{
+    font-size: 20px
+}
 
 @media (max-width: 1045px) {
-    body {
-        background-repeat: repeat;
-        background-size: cover;
+    #v-pills-tab {
+        width: 28%;
+        margin-left: -8px;
+    }
+
+    .completeButton{
+        font-size: 16px;
+        width: 100%;
+    }
+    #breadCrumbLink{
+        font-size: 10px;
+    }
+    .nav-link{
+        font-size: 13px;
+        margin-bottom: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     #mainLessonPageFrame {
