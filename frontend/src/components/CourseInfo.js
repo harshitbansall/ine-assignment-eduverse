@@ -30,7 +30,7 @@ export default function CourseInfo(props) {
 
       const loadData = async function () {
         const { data } = await axios.post(
-          "http://127.0.0.1:8000/api/enrollments",
+          "https://eduversebackend.pythonanywhere.com/api/enrollments",
           { course_id: course_id },
           { headers: { Authorization: "JWT " + cookies.get("access_token") } }
         );
@@ -64,7 +64,7 @@ export default function CourseInfo(props) {
       else {
         headers = {}
       }
-      const { data } = await axios.get("http://127.0.0.1:8000/api/courses/" + course_id + "/content", headers);
+      const { data } = await axios.get("https://eduversebackend.pythonanywhere.com/api/courses/" + course_id + "/content", headers);
       setCourseInfo(data.results);
       setLoading((loading) => !loading);
 

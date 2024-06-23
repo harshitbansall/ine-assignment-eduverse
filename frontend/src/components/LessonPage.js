@@ -23,7 +23,7 @@ export default function LessonPage(props) {
 
       const loadData = async function () {
         const { data } = await axios.post(
-          "http://127.0.0.1:8000/api/courses/" + course_id + "/lessons/" + lesson_id,
+          "https://eduversebackend.pythonanywhere.com/api/courses/" + course_id + "/lessons/" + lesson_id,
           {},
           { headers: { Authorization: "JWT " + cookies.get("access_token") } }
         );
@@ -61,7 +61,7 @@ export default function LessonPage(props) {
         alert("You have to login first to see course lessons.")
         navigate(-1);
       }
-      const { data } = await axios.get("http://127.0.0.1:8000/api/courses/" + course_id + "/lessons", headers);
+      const { data } = await axios.get("https://eduversebackend.pythonanywhere.com/api/courses/" + course_id + "/lessons", headers);
       setLessonPage(data.results);
       setLoading((loading) => !loading);
       props.setProgress(100);

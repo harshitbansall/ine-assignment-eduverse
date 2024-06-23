@@ -23,7 +23,7 @@ export default function Profile(props) {
       } else {
         headersData = {}
       }
-      const { data } = await axios.get("http://127.0.0.1:8000/api/enrollments", headersData);
+      const { data } = await axios.get("https://eduversebackend.pythonanywhere.com/api/enrollments", headersData);
       setCourses(data.results.courses);
 
       setLoading(false);

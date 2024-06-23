@@ -29,7 +29,7 @@ const LoginOrProfileButton = () => {
       setLoading(true);
       const loadData = async function () {
         const { data } = await axios.get(
-          "http://127.0.0.1:8000/api/config",
+          "https://eduversebackend.pythonanywhere.com/api/config",
           { headers: { Authorization: "JWT " + cookies.get("access_token") } }
         );
         setLoading(false);

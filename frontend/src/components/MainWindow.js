@@ -19,7 +19,7 @@ export default function MainWindow(props) {
   const state = useLocation();
 
   if (props.pageID === "featured") {
-    apiLink = "http://127.0.0.1:8000/api/courses";
+    apiLink = "https://eduversebackend.pythonanywhere.com/api/courses";
     heading = "Featured";
   } else if (props.pageID === "courses") {
     var q = searchParams.get("q") ? searchParams.get("q") : "";
@@ -28,7 +28,7 @@ export default function MainWindow(props) {
     var level = searchParams.get("level") ? searchParams.get("level") : "";
     var duration = searchParams.get("duration") ? searchParams.get("duration") : "";
     var stringList = [q, language, subject, level, duration]
-    apiLink = "http://127.0.0.1:8000/api/courses?q=" + searchParams.get("q") + "&language=" + searchParams.get("language") + "&subject=" + searchParams.get("subject") + "&level=" + searchParams.get("level") + "&duration=" + searchParams.get("duration");
+    apiLink = "https://eduversebackend.pythonanywhere.com/api/courses?q=" + searchParams.get("q") + "&language=" + searchParams.get("language") + "&subject=" + searchParams.get("subject") + "&level=" + searchParams.get("level") + "&duration=" + searchParams.get("duration");
     heading = "Search Results for '" + stringList.filter(Boolean).join(", ") + "'";
   }
 
