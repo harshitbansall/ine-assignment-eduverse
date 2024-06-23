@@ -54,6 +54,7 @@
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
     object-fit: cover;
+    
 }
 
 #courseCardTitle {
@@ -103,7 +104,13 @@
         padding-bottom: 1rem;
         margin-top: 4.5rem;
     }
-
+    #courseCard {
+        max-width: 1000px;
+    }
+    #coursecardImage{
+        max-height: 100px;
+    }
+    
     #mainWindowGrid{
         grid-template-columns: auto;
     }
@@ -126,6 +133,7 @@
         height: 80%;
         width: 108%;
     }
+    
 }
 
 

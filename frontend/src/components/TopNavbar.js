@@ -229,7 +229,7 @@ export default function Navbar(props) {
           <div className="bar2"></div>
           <div className="bar3"></div>
         </div>
-        <div id="myLinks">
+        <div id="myLinks" style={{marginLeft:"55px"}}>
           <div id="loginButtonDIV" className="navbar-nav ms-4">
             <LoginOrProfileButton />
           </div>

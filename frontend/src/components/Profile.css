@@ -41,7 +41,7 @@
     padding-right: 0;
     overflow: hidden;
     position: relative;
-    max-width: 280px;
+
 
 }
 
@@ -94,7 +94,7 @@
 
 
 @media (max-width: 1045px) {
-    #mainWindowMainFrame {
+    #profileMainFrame {
         padding-top: 10px;
         padding-left: 10px;
         padding-right: 10px;
@@ -112,6 +112,8 @@
         font-size: 15px;
     }
 
+    
+
     #mainWindowHeading {
         font-size: 20px;
         /* margin-top: 0.5rem; */
@@ -126,6 +128,7 @@
         height: 80%;
         width: 108%;
     }
+
 }
 
 
