@@ -123,7 +123,7 @@ export default function LessonPage(props) {
             <div className="tab-content" id="v-pills-tabContent" style={{ width: "100%" }}>
               {lessonData.course_lessons.map((data) => (
                 <div className={(data.lesson_number === parseInt(lesson_number)) ? "tab-pane show active" : "tab-pane"} id={"v-pills-" + data.lesson_number} role="tabpanel" aria-labelledby="v-pills-home-tab">
-                  <div style={{ color: "white" }} dangerouslySetInnerHTML={{ __html: data.lesson_description }}></div>
+                  <div style={{color:"white"}} className="contentBox" dangerouslySetInnerHTML={{ __html: data.lesson_description }}></div>
                   <br /><br />
                   <center>
                     {

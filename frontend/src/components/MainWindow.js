@@ -22,9 +22,14 @@ export default function MainWindow(props) {
     apiLink = "http://127.0.0.1:8000/api/courses";
     heading = "Featured";
   } else if (props.pageID === "courses") {
-    var stri = (searchParams.get("q")) ? searchParams.get("q") : searchParams.get("language")
-    apiLink = "http://127.0.0.1:8000/api/courses?q=" + searchParams.get("q") + "&language=" + searchParams.get("language") + "&subject=" + searchParams.get("subject");
-    heading = "Search Results for '" + stri + "'";
+    var q = searchParams.get("q") ? searchParams.get("q") : "";
+    var language = searchParams.get("language") ? searchParams.get("language") : "";
+    var subject = searchParams.get("subject") ? searchParams.get("subject") : "";
+    var level = searchParams.get("level") ? searchParams.get("level") : "";
+    var duration = searchParams.get("duration") ? searchParams.get("duration") : "";
+    var stringList = [q, language, subject, level, duration]
+    apiLink = "http://127.0.0.1:8000/api/courses?q=" + searchParams.get("q") + "&language=" + searchParams.get("language") + "&subject=" + searchParams.get("subject") + "&level=" + searchParams.get("level") + "&duration=" + searchParams.get("duration");
+    heading = "Search Results for '" + stringList.filter(Boolean).join(", ") + "'";
   }
 
 

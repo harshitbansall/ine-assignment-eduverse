@@ -24,6 +24,8 @@ class Courses(APIView):
             language_query = request.GET.get('language')
             search_query = request.GET.get('q')
             subject_query = request.GET.get('subject')
+            level_query = request.GET.get('level')
+            duration_query = request.GET.get('duration')
 
             if search_query not in ['null', '', None]:
                 courses_list = courses_list.filter(name__contains = search_query)
@@ -31,6 +33,10 @@ class Courses(APIView):
                 courses_list = courses_list.filter(languages__name = language_query)
             if subject_query not in ['null', '', None]:
                 courses_list = courses_list.filter(subject__name = subject_query)
+            if level_query not in ['null', '', None]:
+                courses_list = courses_list.filter(level__name = level_query)
+            if duration_query not in ['null', '', None]:
+                courses_list = courses_list.filter(duration__name = duration_query)
 
         return Response(data={
             'success': 'true',
