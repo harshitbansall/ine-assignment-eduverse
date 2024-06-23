@@ -3,20 +3,20 @@ import './Footer.css';
 export default function Footer() {
   const myRef = useRef();
   useEffect(() =>{
-    const observer = new IntersectionObserver(([entry]) =>{
-      if (entry.isIntersecting){
-        entry.target.classList.remove('hidden');
-        entry.target.classList.add('show');
-      }
-      else{
-        entry.target.classList.remove('show');
-        entry.target.classList.add('hidden');
-      }
-    });
-    observer.observe(myRef.current);
+    // const observer = new IntersectionObserver(([entry]) =>{
+    //   if (entry.isIntersecting){
+    //     entry.target.classList.remove('hidden');
+    //     entry.target.classList.add('show');
+    //   }
+    //   else{
+    //     entry.target.classList.remove('show');
+    //     entry.target.classList.add('hidden');
+    //   }
+    // });
+    // observer.observe(myRef.current);
   },[]);
   return (
-    <div id="mainFooter" className="footer py-3 hidden" ref={myRef} >
+    <div id="mainFooter" className="footer py-3" >
       <div id="mainFooterInside1">
         <div id="mainFooterInside2">
           <span style={{color:"white"}}>

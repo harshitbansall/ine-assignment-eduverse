@@ -1,0 +1,137 @@
+#profileMainFrame {
+    padding-left: 2rem;
+    flex-grow: 1;
+    padding-right: 2.5rem;
+    padding-top: 1.2rem;
+    margin-right: 8rem;
+    margin-left: 8rem;
+    padding-bottom: 2.5rem;
+    background-color: transparent;
+    /* background: red; */
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
+    width: 60%;
+    
+    min-height: 84vh;
+}
+
+#mainWindowHeading {
+    color: white;
+    margin-bottom: 1rem;
+    margin-left: 6px;
+    font-size: 30px;
+    font-weight: 500;
+    text-transform: capitalize;
+
+}
+
+#mainWindowGrid {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-column-gap: 13px;
+    grid-row-gap: 16px;
+}
+
+#courseCard {
+    background: transparent;
+    border: thin solid rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+    border-radius: 20px;
+    padding-right: 0;
+    overflow: hidden;
+    position: relative;
+    max-width: 280px;
+
+}
+
+#courseCard:hover {
+    background: transparent;
+    box-shadow: 0px 0px 0px 0px rgb(255, 255, 255), 0 0px 20px 0.5px rgb(255, 255, 255, 0.2);
+}
+
+#courseCardImage {
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
+    object-fit: cover;
+}
+
+#courseCardTitle {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 3px;
+
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    -ms-transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
+.show {
+    opacity: 1;
+    transition: all 1s;
+    filter: blur(0px);
+    transform: translateX(0%);
+
+}
+
+.hidden {
+    opacity: 0;
+    transition: all 10ms;
+    filter: blur(2px);
+}
+
+#courseCardImage {
+    height: 150px;
+    width: 280px;
+}
+
+
+@media (max-width: 1045px) {
+    #mainWindowMainFrame {
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        padding-bottom: 1rem;
+        margin-top: 4.5rem;
+    }
+
+    #mainWindowGrid{
+        grid-template-columns: auto;
+    }
+
+    #courseCardTitle {
+        font-size: 15px;
+    }
+
+    #mainWindowHeading {
+        font-size: 20px;
+        /* margin-top: 0.5rem; */
+        margin-bottom: 1rem;
+    }
+}
+
+
+
+@media (max-width: 415px) {
+    #courseCardImage {
+        height: 80%;
+        width: 108%;
+    }
+}
+
+
+@media (min-width:416px) and (max-width: 760px) {
+    #courseCardImage {
+        height: 80%;
+        width: 104%;
+    }
+}

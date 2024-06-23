@@ -1,31 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link, useSearchParams, useParams, useLocation } from "react-router-dom";
+import React, { useEffect, useState, useLocation } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import "./MainWindow.css";
+import "./Profile.css";
 import { TailSpin } from "react-loader-spinner";
 import Cookies from "universal-cookie";
 
-export default function MainWindow(props) {
+export default function Profile(props) {
   const cookies = new Cookies();
-
-
   const [loading, setLoading] = useState(true);
-
-  let [searchParams, setSearchParams] = useSearchParams();
   const [courses, setCourses] = useState([]);
-  var apiLink;
-  var heading;
-
-  const state = useLocation();
-
-  if (props.pageID === "featured") {
-    apiLink = "http://127.0.0.1:8000/api/courses";
-    heading = "Featured";
-  } else if (props.pageID === "courses") {
-    var stri = (searchParams.get("q")) ? searchParams.get("q") : searchParams.get("language")
-    apiLink = "http://127.0.0.1:8000/api/courses?q=" + searchParams.get("q") + "&language=" + searchParams.get("language") + "&subject=" + searchParams.get("subject");
-    heading = "Search Results for '" + stri + "'";
-  }
+  // const state = useLocation();
 
 
   useEffect(() => {
@@ -33,7 +17,13 @@ export default function MainWindow(props) {
     props.setProgress(20);
 
     const loadData = async function () {
-      const { data } = await axios.get(apiLink);
+      var headersData;
+      if (cookies.get("access_token")) {
+        headersData = { headers: { Authorization: "JWT " + cookies.get("access_token") } }
+      } else {
+        headersData = {}
+      }
+      const { data } = await axios.get("http://127.0.0.1:8000/api/enrollments", headersData);
       setCourses(data.results.courses);
 
       setLoading(false);
@@ -44,13 +34,13 @@ export default function MainWindow(props) {
     loadData();
 
 
-  }, [state]);
+  }, []);
 
 
 
   if (loading) {
     return (
-      <div id="mainWindowMainFrame" className="container">
+      <div id="profileMainFrame" className="container">
 
         <div className="center-screen">
 
@@ -68,8 +58,8 @@ export default function MainWindow(props) {
   } else {
     return (
 
-      <div id="mainWindowMainFrame">
-        <h1 id="mainWindowHeading">{heading}</h1>
+      <div id="profileMainFrame">
+        <h1 id="mainWindowHeading">Enrolled Courses</h1>
         <div id="mainWindowGrid">
           {courses.map((data) => (
 
@@ -79,7 +69,7 @@ export default function MainWindow(props) {
               className="zoom"
             >
               <Link
-                to={"/courses/" + data.course_id}
+                to={"/courses/" + data.course_id + "/lessons/1"}
                 style={{ textDecoration: "none" }}
               >
 
@@ -95,18 +85,24 @@ export default function MainWindow(props) {
                     <br></br>
                     <span style={{ textDecoration: "none", fontSize: "13px", color: "white" }}>Skills you'll gain:</span>
                     <span style={{ textDecoration: "none", fontSize: "13px", color: "wheat", fontWeight: "200" }}> {data.course_skills}</span>
-                    <br /><br />
-                    <span style={{ color: "wheat", fontSize: "15px" }}>{data.course_description.substr(0, 120)}...</span>
+                    {/* <br /><br />
+                    <span style={{ color: "wheat", fontSize: "15px" }}>{data.course_description.substr(0, 120)}...</span> */}
                     <br /><br /><br />
                     <div style={{ position: "absolute", bottom: "15px" }}>
                       <span style={{ textDecoration: "none", fontSize: "14px", color: "white" }}>{data.course_level} • {data.course_duration}</span>
                     </div>
+
+
+
+                    {/* <p style={{ fontSize: "10px" }}>{data.course_description}</p> */}
 
                   </div>
 
 
 
                 </div>
+
+                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
               </Link>
             </div>
 

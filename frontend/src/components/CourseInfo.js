@@ -14,31 +14,37 @@ export default function CourseInfo(props) {
   let { course_id } = useParams();
   const cookies = new Cookies();
 
+
+  function handleButtonChange(message) {
+    const enrollButton = document.getElementById("enrollButton");
+    enrollButton.disabled = true;
+    enrollButton.innerHTML = message;
+    enrollButton.classList.remove("btn-primary");
+    enrollButton.classList.add("btn-success");
+  }
+
   function handleEnrollButton(course_id) {
     props.setProgress(20);
 
     if (cookies.get("access_token")) {
-      // setLoading(true);
+
       const loadData = async function () {
         const { data } = await axios.post(
           "http://127.0.0.1:8000/api/enrollments",
           { course_id: course_id },
           { headers: { Authorization: "JWT " + cookies.get("access_token") } }
         );
-        // setLoading(false);
+
         if (data.success === "true") {
-          const enrollButton = document.getElementById("enrollButton");
-          enrollButton.disabled = true;
-          enrollButton.innerHTML = "Enrolled";
-          enrollButton.classList.remove("btn-primary");
-          enrollButton.classList.add("btn-success");
+          handleButtonChange("Enrolled");
+          document.getElementById("gotoLessonsButton").classList.remove("hidden");
         } else if (data.success === "false") {
-          // setUserLogged(false);
+
         }
       };
       loadData();
     } else {
-      alert("Login first.");
+      alert("You have to login to enroll for a Course.");
       setLoading(false);
     }
 
@@ -51,23 +57,18 @@ export default function CourseInfo(props) {
     props.setProgress(20);
 
     const loadData = async function () {
-      const { data } = await axios.get("http://127.0.0.1:8000/api/courses/" + course_id + "/content");
+      const { data } = await axios.get("http://127.0.0.1:8000/api/courses/" + course_id + "/content",
+        { headers: { Authorization: "JWT " + cookies.get("access_token") } });
       setCourseInfo(data.results);
-      // console.log(data);
       setLoading((loading) => !loading);
+      // if (data.results.is_enrolled) {
+      //   handleButtonChange("Already Enrolled.");
+      // }
       props.setProgress(100);
     };
 
     loadData();
   }, []);
-
-  // document.body.style.backgroundImage =
-  //   "linear-gradient(to bottom, rgba(245, 246, 252, 0.4), rgba(117, 19, 93, 0.73)), url('" +
-  //   courseInfo.background_image +
-  //   "')";
-
-  // document.body.style.backgroundSize = "100%";
-  // document.body.style.backgroundRepeat = "no-repeat";
 
   if (loading) {
     return (
@@ -108,10 +109,20 @@ export default function CourseInfo(props) {
             </ol>
           </nav>
           <h1 id="courseHeading">{courseInfo.course_display_name}</h1>
-
-          <button id="enrollButton" type="button" class="btn btn-primary" style={{ fontSize: "20px" }} onClick={() => handleEnrollButton(courseInfo.course_id)}>
-            <img width="25" height="25" style={{ marginRight: "10px", marginTop: "-5px" }} src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-signature-online-shopping-vitaliy-gorbachev-lineal-vitaly-gorbachev.png" alt="external-signature-online-shopping-vitaliy-gorbachev-lineal-vitaly-gorbachev" />
-            Enroll for Free</button>
+          {
+            (courseInfo.is_enrolled) ?
+              <>
+                <button id="enrollButton" type="button" class="btn btn-success" style={{ fontSize: "20px" }} disabled>Already Enrolled</button>
+                <Link to={"/courses/" + courseInfo.course_id + "/lessons/1"}><button id="gotoLessonsButton" type="button" class="btn btn-primary" style={{ fontSize: "20px", marginLeft: "10px" }}>Go to Lessons</button></Link>
+              </>
+              :
+              <>
+                <button id="enrollButton" type="button" class="btn btn-primary" style={{ fontSize: "20px" }} onClick={() => handleEnrollButton(courseInfo.course_id)}>
+                  <img width="25" height="25" style={{ marginRight: "10px", marginTop: "-5px" }} src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-signature-online-shopping-vitaliy-gorbachev-lineal-vitaly-gorbachev.png" alt="external-signature-online-shopping-vitaliy-gorbachev-lineal-vitaly-gorbachev" />
+                  Enroll for Free</button>
+                <Link to={"/courses/" + courseInfo.course_id + "/lessons/1"}><button id="gotoLessonsButton" type="button" class="btn btn-primary hidden" style={{ fontSize: "20px", marginLeft: "10px" }}>Go to Lessons</button></Link>
+              </>
+          }
 
           <div style={{ marginTop: "20px", marginRight: "20px" }}
             id="courseAbout"
@@ -146,7 +157,7 @@ export default function CourseInfo(props) {
               <ol class="list-group list-group-numbered" style={{ width: "95%" }}>
                 {courseInfo.course_lessons.map((data) => (
                   <li class="list-group-item lessonLink">
-                    <Link to={"/courses/" + courseInfo.course_id + "/lessons/" + data.id} style={{textDecoration:"none", color:"white"}}>{data.name}</Link></li>
+                    <Link to={"/courses/" + courseInfo.course_id + "/lessons/" + data.lesson_number} style={{ textDecoration: "none", color: "white" }}>{data.name}</Link></li>
 
 
                 ))}
@@ -185,7 +196,7 @@ export default function CourseInfo(props) {
 
 
         </div>
-      </div>
+      </div >
     );
   }
 }

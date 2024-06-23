@@ -92,8 +92,8 @@ const LoginOrProfileButton = () => {
             style={{ marginLeft: "4rem" }}
           >
             <li>
-              <Link className="dropdown-item" href="/profile">
-                My Profile
+              <Link className="dropdown-item" to="/profile">
+                My Courses
               </Link>
             </li>
             <li>

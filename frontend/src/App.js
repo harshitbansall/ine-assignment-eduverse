@@ -10,7 +10,7 @@ import LoadingBar from 'react-top-loading-bar'
 import React, { useState } from "react";
 import SignUp from "./components/SignUp";
 import LessonPage from "./components/LessonPage";
-
+import Profile from "./components/Profile";
 
 function App() {
   const [progress, setProgress] = useState(0);
@@ -29,10 +29,11 @@ function App() {
           <Routes>
             <Route path="/" element={<><SideMenu /><MainWindow setProgress={setProgress} pageID="featured" key="featured" /></>} />
             <Route path="/courses" element={<><SideMenu /><MainWindow setProgress={setProgress} pageID="courses" key={0} /></>} />
+            <Route path="/profile" element={<><Profile setProgress={setProgress} key="profile" /></>} />
             <Route path="/login" element={<Login setProgress={setProgress} key="login" />} />
             <Route path="/signup" element={<SignUp setProgress={setProgress} key="signup" />} />
             <Route path="/courses/:course_id" element={<CourseInfo setProgress={setProgress} key="courseInfo" />} />
-            <Route path="/courses/:course_id/lessons/:lesson_id" element={<LessonPage setProgress={setProgress} key="lessonPage" />} />
+            <Route path="/courses/:course_id/lessons/:lesson_number" element={<LessonPage setProgress={setProgress} key="lessonPage" />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -32,36 +32,36 @@
     opacity: 1.0;
 }
 
-#courseHeadingFrame {
+#lessonHeadingFrame {
     /* background-color: red; */
-    width: 64%;
+    width: 100%;
 
     /* float: left; */
 }
 
-#courseHeading {
+#lessonHeading {
     font-size: 5rem;
     color: white;
     font-weight: 700;
 }
 
-#courseAboutHeading {
+#lessonAboutHeading {
     color: white;
     font-weight: 600;
 }
 
-#courseAbout {
+#lessonAbout {
     color: white;
 }
 
-#courseAbout ul {
+#lessonAbout ul {
     display: grid;
     grid-template-columns: 40% 40%;
     grid-column-gap: 30px;
     grid-row-gap: 20px;
 }
 
-#courseAbout ul li {
+#lessonAbout ul li {
     list-style: square;
     color: white;
 }
@@ -76,26 +76,7 @@
     min-height: 100%;
 }
 
-#courseInfoRightDIV {
-    /* background-color: yellow; */
-    height: 100%;
-    flex-grow: 1;
-    width: 10%;
-    padding-top: 1.5rem;
-    padding-left: 1.2rem;
-    /* padding-right: 1.2rem; */
 
-}
-
-#courseInfoScreenShotDIV {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* background-color: red; */
-    /* margin-left: 1rem;
-    margin-right: 1rem; */
-}
 
 #platformBreadcrumb {
     /* margin-left: 1.2rem; */
@@ -149,18 +130,18 @@
         margin-top: 4.5rem;
     }
 
-    #courseHeading {
+    #lessonHeading {
         font-size: 2rem;
         color: white;
         font-weight: 700;
         margin-top: 0;
     }
 
-    #courseHeadingFrame {
+    #lessonHeadingFrame {
         width: 100%;
     }
 
-    #courseInfoRightDIV {
+    #lessonInfoRightDIV {
         width: 100%;
         height: auto;
         padding-left: 0px;
@@ -173,15 +154,15 @@
         margin-top: 5px;
     }
 
-    #courseAbout {
+    #lessonAbout {
         font-size: 12px;
     }
 
-    #courseInfoScreenShotDIV {
+    #lessonInfoScreenShotDIV {
         display: inline-block;
     }
 
-    #courseScreenshotImage {
+    #lessonScreenshotImage {
         width: 140px;
         height: 70px;
     }

@@ -38,10 +38,10 @@ class CourseListSerializer(serializers.HyperlinkedModelSerializer):
     # def get_course_progress(self, obj):
     #     return CourseProgressSerializer(obj.return_is_completed(self.context.get("user_id")), many=True).data
 
-class LessonSerializer(serializers.HyperlinkedModelSerializer):
+class LessonSnippetSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Lesson
-        fields = ('id','name','description')
+        fields = ('id','name','lesson_number')
 
 class CourseContentSerializer(serializers.HyperlinkedModelSerializer):
     course_id = serializers.IntegerField(source='id')
@@ -63,10 +63,11 @@ class CourseContentSerializer(serializers.HyperlinkedModelSerializer):
     course_instructors = serializers.SerializerMethodField("get_course_instructors")
 
     course_lessons = serializers.SerializerMethodField("get_course_lessons")
+    is_enrolled = serializers.SerializerMethodField("get_is_enrolled")
 
     class Meta:
         model = Course
-        fields = ('course_id', 'course_name','course_display_name', 'course_image_url','course_subject', 'course_description', 'course_skills', 'course_languages', 'course_level', 'course_duration', 'course_about', 'course_outcomes', 'course_organizations', 'course_instructors', 'course_lessons')
+        fields = ('course_id', 'course_name','course_display_name', 'course_image_url','course_subject', 'course_description', 'course_skills', 'course_languages', 'course_level', 'course_duration', 'course_about', 'course_outcomes', 'course_organizations', 'course_instructors', 'course_lessons', 'is_enrolled')
 
     def get_course_skills(self, obj):
         return ", ".join([str(x) for x in obj.skills.all()])
@@ -81,8 +82,21 @@ class CourseContentSerializer(serializers.HyperlinkedModelSerializer):
         return ", ".join([str(x) for x in obj.instructors.all()])
     
     def get_course_lessons(self, obj):
-        return LessonSerializer(obj.get_lessons(), many=True).data
+        return LessonSnippetSerializer(obj.get_lessons(), many=True).data
 
-    # def get_course_progress(self, obj):
-    #     return CourseProgressSerializer(obj.return_is_completed(self.context.get("user_id")), many=True).data
+    def get_is_enrolled(self, obj):
+        enrollment = Enrollment.objects.filter(user__id = self.context.get("user_id"), course = obj)
+        if enrollment.exists():
+            return True
+        else:
+            return False
 
+
+class LessonSerializer(serializers.HyperlinkedModelSerializer):
+    lesson_id = serializers.IntegerField(source='id')
+    lesson_name = serializers.CharField(source='name')
+    lesson_description = serializers.CharField(source='description')
+
+    class Meta:
+        model = Lesson
+        fields = ('lesson_id','lesson_name','lesson_number','lesson_description')

@@ -1,17 +1,16 @@
-import json
-import random
-
+import jwt
 import requests
 from django.template import loader
 from django.views.generic import TemplateView
-from rest_framework import permissions
+from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import eduverse.settings as settings
 
 from .models import Course, Enrollment
-from .serializers import CourseContentSerializer, CourseListSerializer
+from .serializers import (CourseContentSerializer, CourseListSerializer,
+                          LessonSerializer)
 
 
 class Courses(APIView):
@@ -47,11 +46,19 @@ class CourseDetails(APIView):
     authentication_classes = ()
 
     def get(self, request, course_id):
+        if request.headers.get('Authorization'):
+            try:
+                context = {'user_id': jwt.decode(request.headers['Authorization'].replace(
+                    'JWT ', ''), key=settings.SECRET_KEY, algorithms=['HS256']).get('user_id')}
+            except:
+                return Response(data={"success": "false", "message": "Invalid Auth Token."}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            context = {}
         course_query = Course.objects.filter(id = course_id).last()
 
         return Response(data={
             'success': 'true',
-            'results': CourseContentSerializer(course_query).data, 
+            'results': CourseContentSerializer(course_query, context=context).data, 
         })
     
 
@@ -60,13 +67,16 @@ class Enrollments(APIView):
     # authentication_classes = ()
 
     def get(self, request):
-
+        print(request.user)
         user_enrollments = Enrollment.objects.filter(user = request.user)
         user_courses = [x.course for x in user_enrollments]
 
         return Response(data={
             'success': 'true',
-            'results': CourseListSerializer(user_courses, many=True).data, 
+            'results': {
+                'total_courses': len(user_courses),
+                'courses': CourseListSerializer(user_courses, many=True).data,
+            }, 
         })
     
     def post(self, request):
@@ -86,3 +96,24 @@ class Enrollments(APIView):
             'success': 'true',
             'results': enrollment.id, 
         })
+
+
+class LessonPage(APIView):
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = ()
+
+    def get(self, request, course_id):
+        course = Course.objects.filter(id = course_id).last()
+
+        lessons = course.get_lessons()
+
+        return Response(data={
+            'success': 'true',
+            'results': {
+                "course_id":course.id,
+                "course_display_name":course.display_name,
+                "course_lessons":LessonSerializer(lessons, many=True).data,
+            }, 
+        })
+
+
